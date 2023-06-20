@@ -1,7 +1,9 @@
 // IMPORT ANY NEEDED COMPONENTS HERE
 import { Dataset } from "./data/dataset"
 import "./App.css"
-
+import Header from "./components/Header/Header"
+import Instructions from "./components/Instructions/Instructions"
+import Chip from "./components/Chip/Chip"
 // don't move this!
 export const appInfo = {
   title: `Fast Food Feud 🍔!`,
@@ -20,6 +22,7 @@ export const appInfo = {
 
 export function App() {
   const { data, categories, restaurants } = Dataset.createDataSet()
+  console.log(categories);
 
   return (
     <main className="App">
@@ -28,21 +31,31 @@ export function App() {
         <div className="categories options">
           <h2 className="title">Categories</h2>
           {/* YOUR CODE HERE */}
+
+          <p>Salads</p>
+
+          {
+            categories.map( (category) =>(
+              <Chip key={category} isActive = {false} label= {category}></Chip>))}
         </div>
       </div>
 
       {/* MAIN COLUMN */}
       <div className="container">
         {/* HEADER GOES HERE */}
+        <Header title= {appInfo.title} tagline ={appInfo.tagline} description= {appInfo.description} />
 
         {/* RESTAURANTS ROW */}
         <div className="RestaurantsRow">
           <h2 className="title">Restaurants</h2>
-          <div className="restaurants options">{/* YOUR CODE HERE */}</div>
+          <div className="restaurants options">{restaurants.map( (restaurant) =>( <Chip key={restaurant} isActive = {false} label = {restaurant}></Chip>))}
+          </div>
         </div>
+        
 
         {/* INSTRUCTIONS GO HERE */}
-
+        <Instructions instruction = {appInfo.instructions.start} start ={appInfo.instructions.start} />
+        
         {/* MENU DISPLAY */}
         <div className="MenuDisplay display">
           <div className="MenuItemButtons menu-items">

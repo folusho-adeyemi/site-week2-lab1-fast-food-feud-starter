@@ -1,12 +1,25 @@
 import "./Chip.css"
 
-export function Chip({ label = "", isActive = false }) {
-  return (
-    <button className="chip">
-      <p className="label"></p>
-      <span className="close" role="button">{`X`}</span>
-    </button>
-  )
+export function Chip({ label = "", isActive = true }) {
+  let buttonClassName;
+  if (isActive === false){
+    buttonClassName = "chip";
+    return (
+      <button className= {buttonClassName}>
+        <p className="label">{label}</p>
+        <span className="close" role="button">{`X`}</span>
+      </button>
+    )
+  }
+  else{
+    buttonClassName = "chipactive";
+    return (
+      <button className= {buttonClassName}>
+        <p className="label">{label}</p>
+        <span className="close" role="button">{`X`}</span>
+      </button>
+    )
+  }
 }
 
 export default Chip
